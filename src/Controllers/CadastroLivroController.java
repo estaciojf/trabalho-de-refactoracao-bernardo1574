@@ -10,7 +10,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import Models.Livro;
+// include para função
+import Controllers.Functions;
 
 public class CadastroLivroController implements ActionListener {
 
@@ -61,26 +62,6 @@ public class CadastroLivroController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		// TODO Auto-generated method stub
-		System.out.println(event.getActionCommand());
 		this.cadastrarLivro();
 	}
-	
-	public void cadastrarLivro() {
-		
-		Livro livro = new Livro(
-				this.fieldTitle.getText(), 
-				this.fieldAuthor.getText(),
-				this.comboGender.getSelectedItem().toString(),
-				Integer.parseInt(this.comboYear.getSelectedItem().toString()),
-				this.isRead.isSelected()
-				);
-		
-		listLivros.add(livro);
-		
-		for (int i = 0 ; i < listLivros.size() ; i ++ ) {
-			System.out.println(listLivros.get(i).toString());
-		}
-		
-	}
-
 }

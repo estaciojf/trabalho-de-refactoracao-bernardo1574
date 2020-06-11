@@ -8,10 +8,9 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import DAO.LivroDAO;
 import Listeners.TableLivroListener;
-import Models.Livro;
-
+// include para função
+import Controllers.Functions;
 
 
 
@@ -38,34 +37,6 @@ public class ExibirController implements ActionListener {
 			model.addColumn(columnName);
 		}
 	}
-	
-	public String getLivros() {
-		
-		this.model.setRowCount(0);
-		
-
-		try {
-			LivroDAO livroDao = new LivroDAO();
-			List<Livro> list = livroDao.getAllLivros();
-			
-			for (Livro livro : list) {
-				model.addRow(new Object[] {
-						livro.getTitle(),
-						livro.getAuthor(),
-						livro.getGender(),
-						livro.getYear(),
-						livro.isRead()
-				});
-			}
-		
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

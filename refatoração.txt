@@ -1,0 +1,2 @@
+Criamos uma página centralizada, chamada function, que incluimos as public functions da controllers, e também retiramos os imports e colocamos somente na functions.
+Criamos uma página de querys no DAO, pois se caso um dia precisar alterar a query, não precisaria pesquisar no código, como também, caso precise novamente de uma query já usado, só chamariamos a variável.

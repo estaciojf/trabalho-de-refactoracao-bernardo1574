@@ -64,6 +64,4 @@ public class Livro {
 	public void setRead(boolean isRead) {
 		this.isRead = isRead;
 	}
-	
-	
 }

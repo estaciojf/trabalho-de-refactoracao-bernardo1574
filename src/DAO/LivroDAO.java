@@ -13,19 +13,15 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 import Enum.EDataBase;
+import DAO.Sql_querys;
 
 import Models.Livro;
 
-public class LivroDAO extends DAO{
-	
-	
-	public static final String table = "Livros";
+public class LivroDAO extends DAO {
 	
 	
 	public LivroDAO() throws SQLException {
-		super();
-		
-		
+		super();	
 	}
 	
 	public List<Livro> getAllLivros() throws SQLException {
@@ -36,7 +32,8 @@ public class LivroDAO extends DAO{
 		ResultSet myResult = null;
 		
 		myStat = DAO.getConnection().createStatement();
-		myResult = myStat.executeQuery("SELECT * FROM " + LivroDAO.table);
+		// inclui a query de select na sql_querys, para assim caso preciso mudar a query ou chama-la futuramente em alguma outra função, simplesmente só colocaria a variável.
+		myResult = myStat.executeQuery(sql_select);
 				
 		while (myResult.next()) {
 			Livro tempLivro = new Livro(
@@ -72,21 +69,13 @@ public class LivroDAO extends DAO{
 		ResultSet myResult = null;
 		
 		myStat = DAO.getConnection().createStatement();
-		String query = String.format("UPDATE Livros SET "
-				+ "title = '%s', author = '%s', gender= '%s', year = %s, isRead = %b WHERE id = %s", 
-				livro.getTitle(), livro.getAuthor(), livro.getGender(), livro.getYear(), livro.isRead(), id);
-	
-				
-	
-		System.out.println(query);
+		String query = String.format(sql_update, 
+			livro.getTitle(), livro.getAuthor(), livro.getGender(), livro.getYear(), livro.isRead(), id);
+
 		myStat.executeUpdate(query);
 		
 		
 		myStat.close();
 		
 	}
-	
-	
-	
-
 }
